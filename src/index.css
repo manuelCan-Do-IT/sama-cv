@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -100,11 +101,11 @@
 
   /* Custom utility classes */
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-DEFAULT via-turquoise-DEFAULT to-orange-DEFAULT bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-600 via-turquoise-500 to-orange-500 bg-clip-text text-transparent;
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-r from-purple-DEFAULT to-turquoise-DEFAULT;
+    @apply bg-gradient-to-r from-purple-600 to-turquoise-500;
   }
 
   .gradient-border {
