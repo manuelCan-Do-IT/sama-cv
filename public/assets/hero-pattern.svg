@@ -1,0 +1,48 @@
+
+<svg width="1440" height="600" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.2">
+    <circle cx="120" cy="240" r="4" fill="#9B30FF" />
+    <circle cx="120" cy="360" r="4" fill="#30D5C8" />
+    <circle cx="120" cy="480" r="4" fill="#FF7F50" />
+    <circle cx="240" cy="120" r="4" fill="#9B30FF" />
+    <circle cx="240" cy="240" r="4" fill="#30D5C8" />
+    <circle cx="240" cy="360" r="4" fill="#FF7F50" />
+    <circle cx="240" cy="480" r="4" fill="#9B30FF" />
+    <circle cx="360" cy="120" r="4" fill="#30D5C8" />
+    <circle cx="360" cy="240" r="4" fill="#FF7F50" />
+    <circle cx="360" cy="360" r="4" fill="#9B30FF" />
+    <circle cx="360" cy="480" r="4" fill="#30D5C8" />
+    <circle cx="480" cy="120" r="4" fill="#FF7F50" />
+    <circle cx="480" cy="240" r="4" fill="#9B30FF" />
+    <circle cx="480" cy="360" r="4" fill="#30D5C8" />
+    <circle cx="480" cy="480" r="4" fill="#FF7F50" />
+    <circle cx="600" cy="120" r="4" fill="#9B30FF" />
+    <circle cx="600" cy="240" r="4" fill="#30D5C8" />
+    <circle cx="600" cy="360" r="4" fill="#FF7F50" />
+    <circle cx="600" cy="480" r="4" fill="#9B30FF" />
+    <circle cx="720" cy="120" r="4" fill="#30D5C8" />
+    <circle cx="720" cy="240" r="4" fill="#FF7F50" />
+    <circle cx="720" cy="360" r="4" fill="#9B30FF" />
+    <circle cx="720" cy="480" r="4" fill="#30D5C8" />
+    <circle cx="840" cy="120" r="4" fill="#FF7F50" />
+    <circle cx="840" cy="240" r="4" fill="#9B30FF" />
+    <circle cx="840" cy="360" r="4" fill="#30D5C8" />
+    <circle cx="840" cy="480" r="4" fill="#FF7F50" />
+    <circle cx="960" cy="120" r="4" fill="#9B30FF" />
+    <circle cx="960" cy="240" r="4" fill="#30D5C8" />
+    <circle cx="960" cy="360" r="4" fill="#FF7F50" />
+    <circle cx="960" cy="480" r="4" fill="#9B30FF" />
+    <circle cx="1080" cy="120" r="4" fill="#30D5C8" />
+    <circle cx="1080" cy="240" r="4" fill="#FF7F50" />
+    <circle cx="1080" cy="360" r="4" fill="#9B30FF" />
+    <circle cx="1080" cy="480" r="4" fill="#30D5C8" />
+    <circle cx="1200" cy="120" r="4" fill="#FF7F50" />
+    <circle cx="1200" cy="240" r="4" fill="#9B30FF" />
+    <circle cx="1200" cy="360" r="4" fill="#30D5C8" />
+    <circle cx="1200" cy="480" r="4" fill="#FF7F50" />
+    <circle cx="1320" cy="120" r="4" fill="#9B30FF" />
+    <circle cx="1320" cy="240" r="4" fill="#30D5C8" />
+    <circle cx="1320" cy="360" r="4" fill="#FF7F50" />
+    <circle cx="1320" cy="480" r="4" fill="#9B30FF" />
+  </g>
+</svg>
