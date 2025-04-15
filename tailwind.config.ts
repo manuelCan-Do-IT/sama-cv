@@ -55,8 +55,16 @@ export default {
 				// Custom colors for Afro CV Craft
 				turquoise: {
 					DEFAULT: '#30D5C8',
-					light: '#7EEADD',
-					dark: '#219A91'
+					50: '#E6F6F4',
+					100: '#C2EEE5',
+					200: '#9BE5D6',
+					300: '#74DDC7',
+					400: '#4DD4B8',
+					500: '#30D5C8',
+					600: '#2AB3A9',
+					700: '#238F87',
+					800: '#1D6B66',
+					900: '#164744'
 				},
 				purple: {
 					DEFAULT: '#9B30FF',
