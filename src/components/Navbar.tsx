@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { LanguageSelector } from "./LanguageSelector";
 import { ThemeToggle } from "./ThemeToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
-
 export function Navbar() {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +16,6 @@ export function Navbar() {
     t,
     language
   } = useLanguage();
-  
   const navItems = [{
     name: language === "fr" ? "Accueil" : language === "en" ? "Home" : language === "es" ? "Inicio" : "Dalal bi",
     key: "home",
@@ -44,7 +41,6 @@ export function Navbar() {
     key: "about",
     path: "/about"
   }];
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -56,15 +52,13 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
-
   return <header className={cn("sticky top-0 z-40 w-full transition-all duration-200", scrolled ? "bg-background/80 backdrop-blur-md border-b shadow-sm" : "bg-transparent")}>
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img alt="SamaCV" height="40" className="h-9 object-contain" src="/lovable-uploads/6d520a53-c20d-46d7-a543-22f73f2addb8.png" />
+          <img alt="SamaCV" height="40" src="/lovable-uploads/6d520a53-c20d-46d7-a543-22f73f2addb8.png" className="h-9 object-cover" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">
