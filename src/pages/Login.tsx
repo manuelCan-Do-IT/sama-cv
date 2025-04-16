@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { z } from "zod";
@@ -11,6 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { toast } from "@/components/ui/use-toast";
 import { LogIn, Mail, Lock } from "lucide-react";
 import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -35,21 +35,21 @@ export default function Login() {
   async function onSubmit(data: LoginFormValues) {
     setIsLoading(true);
     try {
-      // Here you would handle login with backend
-      console.log("Login data:", data);
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (error) throw error;
+
       toast({
         title: language === "fr" ? "Connexion réussie" : 
                language === "en" ? "Login successful" : 
                language === "es" ? "Inicio de sesión exitoso" : 
                "Dugg nga bu baax",
-        description: language === "fr" ? "Vous êtes connecté à votre compte" : 
-                     language === "en" ? "You are now logged into your account" : 
-                     language === "es" ? "Has iniciado sesión en tu cuenta" : 
-                     "Léegi dugg nga ci sa compte",
       });
-      // Redirect to home after login
-      navigate("/");
-    } catch (error) {
+      navigate("/profile");
+    } catch (error: any) {
       console.error("Login error:", error);
       toast({
         variant: "destructive",
@@ -57,17 +57,13 @@ export default function Login() {
                language === "en" ? "Login failed" : 
                language === "es" ? "Error de inicio de sesión" : 
                "Dugg bi daña ko bañ",
-        description: language === "fr" ? "Veuillez vérifier vos identifiants" : 
-                     language === "en" ? "Please check your credentials" : 
-                     language === "es" ? "Por favor, verifica tus credenciales" : 
-                     "Xoolal bu baax sa email ak sa baatu yoon",
+        description: error.message,
       });
     } finally {
       setIsLoading(false);
     }
   }
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
