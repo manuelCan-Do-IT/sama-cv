@@ -14,74 +14,74 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 262 100% 59%; /* Purple */
+    --primary: 210 100% 40%; /* Blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 173 68% 51%; /* Turquoise */
+    --secondary: 120 60% 45%; /* Green */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 16 100% 66%; /* Orange */
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 100% 50%; /* Yellow */
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84.2% 60.2%; /* Red */
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 262 100% 59%; /* Purple */
+    --ring: 210 100% 40%; /* Blue */
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 262 100% 59%; /* Purple */
+    --sidebar-primary: 210 100% 40%; /* Blue */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 173 68% 51%; /* Turquoise */
+    --sidebar-ring: 120 60% 45%; /* Green */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 210 50% 10%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 210 50% 13%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 210 50% 13%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 262 100% 65%; /* Purple - slightly brighter for dark mode */
+    --primary: 210 90% 50%; /* Blue - brighter for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 173 68% 55%; /* Turquoise - slightly brighter for dark mode */
+    --secondary: 120 60% 50%; /* Green - brighter for dark mode */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 16 100% 72%; /* Orange - slightly brighter for dark mode */
-    --accent-foreground: 0 0% 100%;
+    --accent: 47 100% 55%; /* Yellow - brighter for dark mode */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 262 100% 65%; /* Purple - slightly brighter for dark mode */
+    --ring: 210 90% 50%; /* Blue - brighter for dark mode */
     
-    --sidebar-background: 240 5.9% 10%;
+    --sidebar-background: 210 50% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 262 100% 65%; /* Purple - slightly brighter for dark mode */
+    --sidebar-primary: 210 90% 50%; /* Blue - brighter for dark mode */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 210 40% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 173 68% 55%; /* Turquoise - slightly brighter for dark mode */
+    --sidebar-border: 210 40% 15.9%;
+    --sidebar-ring: 120 60% 50%; /* Green - brighter for dark mode */
   }
 }
 
@@ -101,16 +101,16 @@
 
   /* Custom utility classes */
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-600 via-turquoise-500 to-orange-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-green-600 via-yellow-500 to-red-600 bg-clip-text text-transparent;
   }
 
   .gradient-bg {
-    @apply bg-gradient-to-r from-purple-600 to-turquoise-500;
+    @apply bg-gradient-to-r from-green-600 via-yellow-500 to-red-600;
   }
 
   .gradient-border {
     @apply border-2 border-transparent bg-clip-border;
-    background-image: linear-gradient(white, white), linear-gradient(to right, #9B30FF, #30D5C8, #FF7F50);
+    background-image: linear-gradient(white, white), linear-gradient(to right, #3B82F6, #84CC16, #DC2626);
     background-origin: border-box;
     background-clip: padding-box, border-box;
   }

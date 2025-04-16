@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Card, 
   CardContent,
@@ -14,8 +15,13 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Upload, FileType, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ModifyCv() {
+  const { t } = useLanguage();
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -33,14 +39,14 @@ export default function ModifyCv() {
       
       // Check file size (max 5MB)
       if (selectedFile.size > 5 * 1024 * 1024) {
-        setError("Le fichier est trop volumineux. La taille maximale est de 5MB.");
+        setError(t("modify.error.size"));
         return;
       }
       
       // Check file type
       const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!allowedTypes.includes(selectedFile.type)) {
-        setError("Format de fichier non supporté. Veuillez télécharger un fichier PDF ou Word.");
+        setError(t("modify.error.format"));
         return;
       }
       
@@ -63,25 +69,39 @@ export default function ModifyCv() {
         clearInterval(interval);
         setUploading(false);
         setUploadComplete(true);
-        // In a real app, we would process the file here and redirect to the editor
+        toast({
+          title: "CV téléchargé",
+          description: "Votre CV a été téléchargé avec succès.",
+        });
       }
     }, 100);
   };
+
+  // Redirect after successful upload
+  useEffect(() => {
+    if (uploadComplete) {
+      const timer = setTimeout(() => {
+        navigate("/builder");
+      }, 3000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [uploadComplete, navigate]);
   
   return (
     <div className="container py-8 max-w-4xl">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold mb-2">Modifier un CV existant</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("modify.title")}</h1>
         <p className="text-muted-foreground">
-          Téléchargez votre CV existant pour le transformer avec notre éditeur.
+          {t("modify.subtitle")}
         </p>
       </div>
       
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Télécharger votre CV</CardTitle>
+          <CardTitle>{t("modify.upload")}</CardTitle>
           <CardDescription>
-            Formats acceptés: PDF, Word (.docx, .doc)
+            {t("modify.formats")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -100,10 +120,10 @@ export default function ModifyCv() {
                     <Upload className="h-6 w-6" />
                   </div>
                   <p className="text-sm font-medium">
-                    Glissez-déposez votre CV ici ou cliquez pour le sélectionner
+                    {t("modify.drop")}
                   </p>
                   <p className="text-xs text-muted-foreground mt-2">
-                    Taille maximale: 5MB
+                    {t("modify.maxsize")}
                   </p>
                 </div>
                 <div>
@@ -115,7 +135,7 @@ export default function ModifyCv() {
                     onChange={handleFileChange}
                   />
                   <Button asChild variant="outline" className="hover-scale">
-                    <Label htmlFor="cv-upload">Parcourir les fichiers</Label>
+                    <Label htmlFor="cv-upload">{t("modify.browse")}</Label>
                   </Button>
                 </div>
               </div>
@@ -135,7 +155,7 @@ export default function ModifyCv() {
                   </div>
                 </div>
                 <Button onClick={handleUpload} className="gradient-bg hover-scale">
-                  Télécharger
+                  {t("modify.upload.btn")}
                 </Button>
               </div>
             )}
@@ -143,7 +163,7 @@ export default function ModifyCv() {
             {uploading && (
               <div className="space-y-4">
                 <div className="flex justify-between text-sm">
-                  <span className="font-medium">Téléchargement en cours...</span>
+                  <span className="font-medium">{t("modify.uploading")}</span>
                   <span>{uploadProgress}%</span>
                 </div>
                 <Progress value={uploadProgress} className="h-2" />
@@ -152,10 +172,9 @@ export default function ModifyCv() {
             
             {uploadComplete && (
               <div className="bg-green-50 border border-green-200 p-4 rounded-lg text-green-800 text-center">
-                <p className="font-medium">Téléchargement réussi !</p>
+                <p className="font-medium">{t("modify.success")}</p>
                 <p className="text-sm mt-2">
-                  Votre CV a été téléchargé avec succès. 
-                  Nous sommes en train d'analyser son contenu.
+                  {t("modify.success.message")}
                 </p>
                 <div className="mt-4">
                   <Progress value={100} className="h-2 bg-green-100" />
@@ -167,40 +186,40 @@ export default function ModifyCv() {
         {uploadComplete && (
           <CardFooter>
             <p className="text-sm text-muted-foreground animate-pulse">
-              Redirection vers l'éditeur de CV dans quelques secondes...
+              {t("modify.redirect")}
             </p>
           </CardFooter>
         )}
       </Card>
       
       <div className="space-y-6 text-center">
-        <h2 className="text-2xl font-bold">Comment ça fonctionne</h2>
+        <h2 className="text-2xl font-bold">{t("how.title")}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div className="p-6">
             <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold">1</span>
             </div>
-            <h3 className="font-bold mb-2">Téléchargez votre CV</h3>
+            <h3 className="font-bold mb-2">{t("how.step1")}</h3>
             <p className="text-muted-foreground">
-              Téléchargez votre CV existant au format PDF ou Word.
+              {t("how.step1.desc")}
             </p>
           </div>
           <div className="p-6">
             <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold">2</span>
             </div>
-            <h3 className="font-bold mb-2">Notre système l'analyse</h3>
+            <h3 className="font-bold mb-2">{t("how.step2")}</h3>
             <p className="text-muted-foreground">
-              Notre outil intelligent extrait automatiquement les informations de votre CV.
+              {t("how.step2.desc")}
             </p>
           </div>
           <div className="p-6">
             <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center mx-auto mb-4">
               <span className="text-primary font-bold">3</span>
             </div>
-            <h3 className="font-bold mb-2">Personnalisez et améliorez</h3>
+            <h3 className="font-bold mb-2">{t("how.step3")}</h3>
             <p className="text-muted-foreground">
-              Utilisez notre éditeur pour modifier, améliorer et choisir un nouveau design.
+              {t("how.step3.desc")}
             </p>
           </div>
         </div>

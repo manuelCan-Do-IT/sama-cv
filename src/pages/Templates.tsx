@@ -4,79 +4,84 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-// Template mock data (expanded from showcase component)
-const categories = ["Tous", "Professionnels", "Créatifs", "Business", "Académiques", "Minimalistes", "Colorés", "Modernes"];
-
+// Template mock data with real images
 const templates = [
   {
     id: 1,
     name: "Corporate Elite",
-    category: "Professionnels",
-    imageUrl: "https://placehold.co/600x800/30D5C8/FFF/?text=CV+Template+1",
+    category: "professional",
+    imageUrl: "/assets/cv-templates/template-1.svg",
     popular: true,
     tags: ["business", "finance", "simple"]
   },
   {
     id: 2,
     name: "Creative Studio",
-    category: "Créatifs",
-    imageUrl: "https://placehold.co/600x800/9B30FF/FFF/?text=CV+Template+2",
+    category: "creative",
+    imageUrl: "/assets/cv-templates/template-2.svg",
     tags: ["design", "coloré", "créatif"]
   },
   {
     id: 3,
     name: "Academic Research",
-    category: "Académiques",
-    imageUrl: "https://placehold.co/600x800/FF7F50/FFF/?text=CV+Template+3",
+    category: "academic",
+    imageUrl: "/assets/cv-templates/template-3.svg",
     tags: ["recherche", "doctorat", "professeur"]
   },
   {
     id: 4,
     name: "Minimal Modern",
-    category: "Minimalistes",
-    imageUrl: "https://placehold.co/600x800/30D5C8/FFF/?text=CV+Template+4",
+    category: "minimalist",
+    imageUrl: "/assets/cv-templates/template-1.svg",
     popular: true,
     tags: ["simple", "épuré", "moderne"]
   },
   {
     id: 5,
     name: "Bold Executive",
-    category: "Business",
-    imageUrl: "https://placehold.co/600x800/9B30FF/FFF/?text=CV+Template+5",
+    category: "business",
+    imageUrl: "/assets/cv-templates/template-3.svg",
     tags: ["management", "direction", "sérieux"]
   },
   {
     id: 6,
     name: "Vibrant Portfolio",
-    category: "Colorés",
-    imageUrl: "https://placehold.co/600x800/FF7F50/FFF/?text=CV+Template+6",
+    category: "colorful",
+    imageUrl: "/assets/cv-templates/template-2.svg",
     tags: ["portfolio", "créatif", "moderne"]
   },
   {
     id: 7,
     name: "Tech Innovator",
-    category: "Modernes",
-    imageUrl: "https://placehold.co/600x800/30D5C8/FFF/?text=CV+Template+7",
+    category: "modern",
+    imageUrl: "/assets/cv-templates/template-1.svg",
     popular: true,
     tags: ["tech", "développeur", "ingénieur"]
   },
   {
     id: 8,
     name: "Classic Professional",
-    category: "Professionnels",
-    imageUrl: "https://placehold.co/600x800/9B30FF/FFF/?text=CV+Template+8",
+    category: "professional",
+    imageUrl: "/assets/cv-templates/template-3.svg",
     tags: ["classique", "simple", "traditionnel"]
   }
 ];
 
 export default function Templates() {
-  const [activeCategory, setActiveCategory] = useState("Tous");
+  const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+
+  const categories = [
+    "all", "professional", "creative", "business", 
+    "academic", "minimalist", "colorful", "modern"
+  ];
 
   const filteredTemplates = templates.filter(template => {
     // Filter by category
-    const categoryMatch = activeCategory === "Tous" || template.category === activeCategory;
+    const categoryMatch = activeCategory === "all" || template.category === activeCategory;
     
     // Filter by search
     const searchMatch = searchQuery === "" || 
@@ -89,9 +94,9 @@ export default function Templates() {
   return (
     <div className="container py-8">
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <h1 className="text-4xl font-bold mb-4">Explorez nos modèles de CV</h1>
+        <h1 className="text-4xl font-bold mb-4">{t("templates.title")}</h1>
         <p className="text-lg text-muted-foreground">
-          Découvrez notre collection complète de modèles professionnels et créatifs pour faire briller votre CV.
+          {t("templates.subtitle")}
         </p>
       </div>
       
@@ -102,7 +107,7 @@ export default function Templates() {
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Rechercher un modèle..."
+              placeholder={t("templates.search")}
               className="pl-8"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -120,7 +125,7 @@ export default function Templates() {
                 }`}
                 onClick={() => setActiveCategory(category)}
               >
-                {category}
+                {t(`templates.category.${category}`)}
               </button>
             ))}
           </div>
@@ -136,8 +141,8 @@ export default function Templates() {
               className="group relative bg-background rounded-xl overflow-hidden border hover:shadow-lg transition-all hover-scale"
             >
               {template.popular && (
-                <div className="absolute top-3 right-3 bg-accent text-white text-xs px-2 py-1 rounded-full z-10">
-                  Populaire
+                <div className="absolute top-3 right-3 bg-accent text-accent-foreground text-xs px-2 py-1 rounded-full z-10">
+                  {t("templates.popular")}
                 </div>
               )}
               <div className="aspect-[3/4] overflow-hidden">
@@ -161,7 +166,7 @@ export default function Templates() {
                 </div>
                 <Button asChild className="w-full gradient-bg">
                   <Link to={`/builder?template=${template.id}`}>
-                    Utiliser ce modèle
+                    {t("templates.use")}
                   </Link>
                 </Button>
               </div>
@@ -170,8 +175,8 @@ export default function Templates() {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-lg font-medium">Aucun modèle trouvé</p>
-          <p className="text-muted-foreground">Essayez d'autres termes de recherche ou filtres</p>
+          <p className="text-lg font-medium">{t("templates.notfound")}</p>
+          <p className="text-muted-foreground">{t("templates.notfound.subtitle")}</p>
         </div>
       )}
     </div>
