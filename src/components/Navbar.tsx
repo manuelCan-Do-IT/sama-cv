@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { LanguageSelector } from "./LanguageSelector";
 import { ThemeToggle } from "./ThemeToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -19,7 +18,7 @@ const NAV_ITEMS = [
 ];
 
 export function Navbar() {
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -48,7 +47,6 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    // Close mobile menu on navigation
     setIsOpen(false);
   }, [location]);
 
@@ -66,7 +64,6 @@ export function Navbar() {
           <img src="/assets/logo.svg" alt="SamaCV" height="40" className="h-10" />
         </Link>
 
-        {/* Desktop menu */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
@@ -84,7 +81,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Right side actions */}
         <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center gap-2">
             <LanguageSelector />
@@ -109,7 +105,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isOpen && isMobile && (
         <div className="fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-top-1 md:hidden bg-background border-t">
           <nav className="flex flex-col space-y-6 mb-8">
@@ -139,3 +134,5 @@ export function Navbar() {
     </header>
   );
 }
+
+export { Navbar };
