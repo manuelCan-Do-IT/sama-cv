@@ -1,7 +1,14 @@
 
-<svg width="160" height="45" viewBox="0 0 160 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0 14.5C0 6.5 6 2 13.5 2C21 2 26 6.5 26.5 12.5C27 18.5 21 23 13.5 23C6 23 0 19 0 14.5Z" fill="#0057A5"/>
-  <path d="M16 14.5C16 6.5 22 2 29.5 2C37 2 42 6.5 42.5 12.5C43 18.5 37 23 29.5 23C22 23 16 19 16 14.5Z" fill="#28A745"/>
-  <text x="50" y="26" font-family="Montserrat" font-size="24" font-weight="bold" fill="#0057A5">Sama</text>
-  <text x="110" y="26" font-family="Montserrat" font-size="24" font-weight="bold" fill="#28A745">CV</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="45" viewBox="0 0 160 45">
+  <defs>
+    <style>
+      .blue-color {
+        fill: #0057A5;
+      }
+      .green-color {
+        fill: #28A745;
+      }
+    </style>
+  </defs>
+  <image href="/lovable-uploads/6d520a53-c20d-46d7-a543-22f73f2addb8.png" width="160" height="45"/>
 </svg>
